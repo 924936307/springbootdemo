@@ -5,9 +5,45 @@
     <title>用户管理</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<script src="/js/bootstrap-paginator.min.js"></script>
+<script>
+    $('#pageLimit').bootstrapPaginator({
+        currentPage: $("#pageNum").val(),
+        totalPages: $("#pages").val(),
+        size: "normal",
+        bootstrapMajorVersion: 3,
+        alignment: "right",
+        numberOfPages: 5,
+        itemTexts: function (type, page, current) {
+            switch (type) {
+                case "first": return "首页";
+                case "prev": return "上一页";
+                case "next": return "下一页";
+                case "last": return "末页";
+                case "page": return page;
+            }
+        },
+        onPageClicked: function (event, originalEvent, type, page){//给每个页眉绑定一个事件，其实就是ajax请求，其中page变量为当前点击的页上的数字。
+            window.location.href = "userlist?pageNum=" + page;
+        }
+    });
+    $(function(){
+        $(".delete_a").click(function(){
+            var userId=$(this).attr("value");
+            if(confirm("确认删除吗？")){
+                window.location.href="/userdelete?id=" + userId;
+                return ;
+            }
+        });
+    });
+</script>
+
 <body>
 <div class="container">
     <div>
+        <div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
+        <input type="hidden" id="pageNum" name="pageNum" th:value="${pageInfo.pageNum}" />
+        <input type="hidden" id="pages" name="pages" th:value="${pageInfo.pages}" />
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div>

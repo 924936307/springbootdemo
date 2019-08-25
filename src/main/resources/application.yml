@@ -19,7 +19,7 @@ max-threads: 300
 accept-count: 200
 port: 8089
 mybatis:
-type-aliases-package: com.zb.mapper
+type-aliases-package: com.wolf.springbootdemo.mapper
 mapper-locations: classpath:mapping/*.xml
 
 pagehelper:

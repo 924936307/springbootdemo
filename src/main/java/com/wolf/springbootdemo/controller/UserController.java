@@ -1,7 +1,7 @@
 package com.wolf.springbootdemo.controller;
 import com.github.pagehelper.PageInfo;
-import com.zb.model.User;
-import com.zb.service.UserService;
+import com.wolf.springbootdemo.model.User;
+import com.wolf.springbootdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
+
     @Autowired
     private UserService userService;
 
