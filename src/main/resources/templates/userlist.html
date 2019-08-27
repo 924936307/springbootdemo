@@ -41,9 +41,6 @@
 <body>
 <div class="container">
     <div>
-        <div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
-        <input type="hidden" id="pageNum" name="pageNum" th:value="${pageInfo.pageNum}" />
-        <input type="hidden" id="pages" name="pages" th:value="${pageInfo.pages}" />
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div>
@@ -58,6 +55,9 @@
 
     <div>
         <h2>用户管理</h2>
+        <div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
+        <input type="hidden" id="pageNum" name="pageNum" th:value="${pageInfo.pageNum}" />
+        <input type="hidden" id="pages" name="pages" th:value="${pageInfo.pages}" />
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list">
             <thead>
             <tr>

@@ -9,11 +9,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    //看来不同的controller中不同的方法映射地址也不能重复
+    /*@RequestMapping("/login")
+    public String login(){
+        return "login";
+    }*/
+
+    @RequestMapping(value = "/login_in", method = RequestMethod.POST)
+    public String login_in(User user, HttpServletRequest request, Model model){
+        User user1 = userService.validateUser(user.getUsername(), user.getPassword());
+        if(user1 == null){
+            return "login";
+        }
+        HttpSession session = request.getSession();
+        session.setAttribute(session.getId(), user1);
+        return "redirect:/userlist";
+
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().removeAttribute(request.getSession().getId());
+        return "login";
+    }
 
     @RequestMapping("/user")
     @ResponseBody

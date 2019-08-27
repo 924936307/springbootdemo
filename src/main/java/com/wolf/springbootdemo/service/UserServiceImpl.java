@@ -2,7 +2,6 @@ package com.wolf.springbootdemo.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wolf.springbootdemo.dao.UserDao;
 import com.wolf.springbootdemo.mapper.UserMapper;
 import com.wolf.springbootdemo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,7 @@ public class UserServiceImpl implements UserService {
         return pageInfo;
     }
 
+
     @Override
     public void deleteByPrimaryKey(int id) {
 
@@ -42,5 +42,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateByPrimaryKeySelective(User user) {
 
+    }
+
+    @Override
+    public User validateUser(String username, String password) {
+        return userMapper.selectByUsernamePass(username,password);
     }
 }

@@ -15,4 +15,6 @@ public interface UserService {
     void insertSelective(User user);
 
     void updateByPrimaryKeySelective(User user);
+
+    User validateUser(String username, String password);
 }

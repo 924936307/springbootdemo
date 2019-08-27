@@ -17,3 +17,61 @@ springboot是约定大于配置的，我们来看看关于thymleaf的约定
 （2）页面文件放在templates文件夹下面
 
 springboot的配置文件分为两种：application.properties和application.yml，默认的是application.properties 这里使用的是aplication.yml
+
+
+spring:
+application:
+name: myspringboot
+output:
+ansi:
+enabled: always
+profiles:
+active: dev
+thymeleaf:
+encoding: UTF-8
+prefix: classpath:/templates/
+
+server:
+tomcat:
+uri-encoding: UTF-8
+max-connections: 500
+min-spare-threads: 25
+max-threads: 300
+accept-count: 200
+port: 8089
+mybatis:
+type-aliases-package: com.wolf.springbootdemo.mapper
+mapper-locations: classpath:mapping/*.xml
+
+pagehelper:
+helper-dialect: mysql
+reasonable: true
+support-methods-arguments: true
+params: count=countSql
+logging:
+level:
+com.wolf.springbootdemo.mapper: debug
+
+#开发配置
+spring:
+profiles: dev
+datasource:
+url: jdbc:mysql://localhost:3306/ssmdemo?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+username: root
+password:
+driver-class-name: com.mysql.jdbc.Driver
+type: com.alibaba.druid.pool.DruidDataSource
+filters: stat
+maxActive: 20
+initialSize: 1
+maxWait: 60000
+minIdle: 1
+timeBetweenEvictionRunsMillis: 60000
+minEvictableIdleTimeMillis: 300000
+validationQuery: select 'x'
+testWhileIdle: true
+testOnBorrow: false
+testOnReturn: false
+poolPreparedStatements: true
+maxOpenPreparedStatements: 20
+
